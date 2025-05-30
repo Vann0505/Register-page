@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | Seat Master</title>
+  <link rel="stylesheet" href="CSS/login.css" />
+  <!-- Font Awesome for eye icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">SEAT MASTER</div>
+    <ul class="nav-links">
+      <li><a href="#">Transportasi</a></li>
+      <li><a href="#">Route</a></li>
+      <li><a href="#">Capacity</a></li>
+      <li><a href="#">Buy Ticket</a></li>
+    </ul>
+    <div class="profile-icon">
+      <span class="icon">👤</span>
+    </div>
+  </nav>
+
+  <main class="register-container">
+    <h1 class="title">SEAT MASTER</h1>
+    <div class="form-box">
+      <h2>CREATE ACCOUNT</h2>
+      <form id="registerForm">
+        <label for="email">EMAIL</label>
+        <input type="email" id="email" placeholder="Email" required />
+
+        <label for="userid">ID</label>
+        <input type="text" id="userid" placeholder="ID" required />
+
+        <label for="password">PASSWORD</label>
+        <div class="password-field">
+          <input type="password" id="password" placeholder="Password" required />
+          <i class="fa-solid fa-eye-slash toggle-password" onclick="togglePassword('password', this)"></i>
+        </div>
+
+        <label for="confirmPassword">CONFIRM PASSWORD</label>
+        <div class="password-field">
+          <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+          <i class="fa-solid fa-eye-slash toggle-password" onclick="togglePassword('confirmPassword', this)"></i>
+        </div>
+
+        <button type="submit" class="register-button">REGISTER</button>
+        <p class="login-link">Already have an account? <a href="#">Login Here!</a></p>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function togglePassword(id, icon) {
+      const input = document.getElementById(id);
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      icon.classList.toggle('fa-eye-slash', !isPassword);
+      icon.classList.toggle('fa-eye', isPassword);
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const userid = document.getElementById('userid').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (!email || !userid || !password || !confirmPassword) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      if (password.length < 6) {
+        alert('Password must be at least 6 characters long.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+      }
+
+      // Simulasi sukses register
+      alert('Account created successfully!');
+      this.reset(); // Reset form setelah berhasil
+    });
+  </script>
+</body>
+</html>
